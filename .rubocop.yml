@@ -1,0 +1,16 @@
+Rails:
+  Enabled: true
+Metrics/LineLength:
+  Max: 150
+AllCops:
+  Exclude:
+    - 'db/schema.rb'
+Layout/IndentationConsistency:
+  EnforcedStyle: rails
+Layout/DotPosition:
+  EnforcedStyle: trailing
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented_relative_to_receiver
+  SupportedStyles:
+    - indented
+    - indented_relative_to_receiver
