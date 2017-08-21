@@ -3,6 +3,7 @@ Rails:
 Metrics/LineLength:
   Max: 150
 AllCops:
+  DisplayCopNames: true
   Exclude:
     - 'db/schema.rb'
 Layout/IndentationConsistency:
@@ -14,3 +15,6 @@ Layout/MultilineMethodCallIndentation:
   SupportedStyles:
     - indented
     - indented_relative_to_receiver
+Style/ClassAndModuleChildren:
+  Exclude:
+    - 'app/controllers/**/*'
