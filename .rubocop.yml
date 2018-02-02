@@ -1,11 +1,10 @@
 Rails:
   Enabled: true
-Metrics/LineLength:
-  Max: 150
 AllCops:
   DisplayCopNames: true
   Exclude:
     - 'db/schema.rb'
+
 Layout/IndentationConsistency:
   EnforcedStyle: rails
 Layout/DotPosition:
@@ -15,18 +14,35 @@ Layout/MultilineMethodCallIndentation:
   SupportedStyles:
     - indented
     - indented_relative_to_receiver
-Style/ClassAndModuleChildren:
-  Exclude:
-    - 'app/controllers/**/*'
 Layout/EmptyLinesAroundClassBody:
   EnforcedStyle: empty_lines_special
+  Exclude:
+    - 'db/migrate/**/*'
 Layout/EmptyLinesAroundModuleBody:
   EnforcedStyle: empty_lines_special
 Layout/EmptyLinesAroundBlockBody:
   Exclude:
     - 'spec/**/*'
+    - 'db/migrate/**/*'
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - 'app/controllers/**/*'
+Style/Documentation:
+  Exclude:
+    - 'db/migrate/**/*'
+
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
+Metrics/MethodLength:
+  Exclude:
+    - 'db/migrate/**/*'
+Metrics/LineLength:
+  Max: 150
+Metrics/AbcSize:
+  Exclude:
+    - 'db/migrate/**/*'
+
 Rails/Blank:
   UnlessPresent: false
