@@ -24,6 +24,10 @@ Layout/EmptyLinesAroundBlockBody:
   Exclude:
     - 'spec/**/*'
     - 'db/migrate/**/*'
+Layout/SpaceInsidePercentLiteralDelimiters:
+  Enabled: false
+Layout/SpaceInsideArrayLiteralBrackets:
+  Enabled: false
 
 Style/ClassAndModuleChildren:
   Exclude:
@@ -31,6 +35,10 @@ Style/ClassAndModuleChildren:
 Style/Documentation:
   Exclude:
     - 'db/migrate/**/*'
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
 
 Metrics/BlockLength:
   Exclude:
