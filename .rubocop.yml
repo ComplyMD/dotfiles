@@ -3,7 +3,7 @@ Rails:
 AllCops:
   DisplayCopNames: true
   Exclude:
-    - 'db/schema.rb'
+    - '**/db/schema.rb'
 
 Layout/IndentationConsistency:
   EnforcedStyle: rails
@@ -17,13 +17,13 @@ Layout/MultilineMethodCallIndentation:
 Layout/EmptyLinesAroundClassBody:
   EnforcedStyle: empty_lines_special
   Exclude:
-    - 'db/migrate/**/*'
+    - '**/db/migrate/**/*'
 Layout/EmptyLinesAroundModuleBody:
   EnforcedStyle: empty_lines_special
 Layout/EmptyLinesAroundBlockBody:
   Exclude:
-    - 'spec/**/*'
-    - 'db/migrate/**/*'
+    - '**/spec/**/*'
+    - '**/db/migrate/**/*'
 Layout/SpaceInsidePercentLiteralDelimiters:
   Enabled: false
 Layout/SpaceInsideArrayLiteralBrackets:
@@ -31,10 +31,10 @@ Layout/SpaceInsideArrayLiteralBrackets:
 
 Style/ClassAndModuleChildren:
   Exclude:
-    - 'app/controllers/**/*'
+    - '**/app/controllers/**/*'
 Style/Documentation:
   Exclude:
-    - 'db/migrate/**/*'
+    - '**/db/migrate/**/*'
 Style/TrailingCommaInArrayLiteral:
   EnforcedStyleForMultiline: comma
 Style/TrailingCommaInHashLiteral:
@@ -42,15 +42,16 @@ Style/TrailingCommaInHashLiteral:
 
 Metrics/BlockLength:
   Exclude:
-    - 'spec/**/*'
+    - '**/spec/**/*'
+    - '**/*.rake'
 Metrics/MethodLength:
   Exclude:
-    - 'db/migrate/**/*'
+    - '**/db/migrate/**/*'
 Metrics/LineLength:
   Max: 150
 Metrics/AbcSize:
   Exclude:
-    - 'db/migrate/**/*'
+    - '**/db/migrate/**/*'
 
 Rails/Blank:
   UnlessPresent: false
