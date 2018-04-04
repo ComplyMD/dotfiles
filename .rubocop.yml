@@ -4,6 +4,7 @@ AllCops:
   DisplayCopNames: true
   Exclude:
     - '**/db/schema.rb'
+    - vendor/bundle/**/*
 
 Layout/IndentationConsistency:
   EnforcedStyle: rails
