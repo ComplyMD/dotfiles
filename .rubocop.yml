@@ -68,3 +68,5 @@ Metrics/AbcSize:
 
 Rails/Blank:
   UnlessPresent: false
+Rails/HasAndBelongsToMany:
+  Enabled: false
