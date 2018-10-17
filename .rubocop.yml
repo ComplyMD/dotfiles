@@ -46,6 +46,8 @@ Style/DocumentationMethod:
     - 'lib/engines/*/bin/**/*'
     - 'spec/**/*'
     - 'doc-src/**/*'
+Style/DoubleNegation:
+  Enabled: false
 Style/TrailingCommaInArrayLiteral:
   EnforcedStyleForMultiline: comma
 Style/TrailingCommaInHashLiteral:
