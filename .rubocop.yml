@@ -29,6 +29,8 @@ Layout/SpaceInsidePercentLiteralDelimiters:
   Enabled: false
 Layout/SpaceInsideArrayLiteralBrackets:
   Enabled: false
+Layout/EmptyLineAfterGuardClause:
+  Enabled: false
 
 Style/ClassAndModuleChildren:
   Exclude:
