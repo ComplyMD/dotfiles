@@ -31,6 +31,8 @@ Layout/SpaceInsideArrayLiteralBrackets:
   Enabled: false
 Layout/EmptyLineAfterGuardClause:
   Enabled: false
+Layout/RescueEnsureAlignment:
+  Enabled: false
 
 Style/ClassAndModuleChildren:
   Exclude:
