@@ -1,0 +1,97 @@
+#!/usr/bin/env bash
+set -ev
+
+# =============================================================================
+# References
+#   - Similar notifiers
+#     - https://gist.github.com/chusiang/895f6406fbf9285c58ad0a3ace13d025
+#     - https://github.com/discordhooks/travis-ci-discord-webhook/blob/master/send.sh
+#   - Teams card previewing
+#     - https://messagecardplayground.azurewebsites.net/
+#
+# Example output:
+#   Pull Request #42
+#   Passed Test stage of build #866 (ba31d83) of ComplyMD/vincari-node-sdk@master by Graham Schmidt
+#
+# Usage:
+#   ./bin/notify_teams_from_travis $WEBHOOK_URL "Started|Passed|Failed"
+#
+# Travis Examples
+#   after_success:
+#     - ./bin/notify_teams_from_travis "$WEBHOOL_URL" "Passed"
+#   after_failure:
+#     - ./bin/notify_teams_from_travis "$WEBHOOL_URL" "Failed"
+#   ...
+#   before_install:
+#     - wget -P bin https://raw.githubusercontent.com/ComplyMD/dotfiles/master/notify_teams_from_travis
+#     - chmod 775 bin/notify_teams_from_travis
+#     - ./bin/notify_teams_from_travis "$WEBHOOK_URL" "Started"
+# =============================================================================
+
+# Help.
+if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+  echo 'Usage: ./notify_teams_from_travis "<webhook_url>" "<notification_status>"'
+  exit 0
+fi
+
+# Webhook or Token.
+WEBHOOK_URL=$1
+if [[ "${WEBHOOK_URL}" == "" ]]
+then
+  echo "No webhook_url specified."
+  exit 1
+fi
+shift
+
+# Notification status
+NOTIFICATION_STATUS=$1
+if [[ "${NOTIFICATION_STATUS}" == "" ]]
+then
+  echo "No notification status specified."
+  exit 1
+fi
+shift
+
+STAGE_NAME="$TRAVIS_BUILD_STAGE_NAME stage of"
+if [[ "$NOTIFICATION_STATUS" == "Passed" ]]; then
+  # green
+  THEME_COLOR="39aa56"
+elif [[ "$NOTIFICATION_STATUS" == "Failed" ]]; then
+  # red
+  THEME_COLOR="db4545"
+else
+  # yellow
+  THEME_COLOR="edde3f"
+fi
+
+COMMIT_SHA="$TRAVIS_COMMIT"
+LAST_COMMIT="$(git rev-parse HEAD)"
+
+# Travis doesn't always get the latest commit if we amend and force push to an open PR
+# We need to manually get the last commit as `git show $TRAVIS_COMMIT` sometimes returns a `bad object` and fails
+if [[ "$TRAVIS_COMMIT" != "$LAST_COMMIT" ]]; then
+  COMMIT_SHA="$LAST_COMMIT"
+fi
+
+AUTHOR_NAME="$(git log -1 "$COMMIT_SHA" --pretty="%aN")"
+if [[ $TRAVIS_PULL_REQUEST != false ]]; then
+  LINE_ONE="[Pull Request #$TRAVIS_PULL_REQUEST](https://github.com/$TRAVIS_REPO_SLUG/pull/$TRAVIS_PULL_REQUEST)\n\n"
+else
+  LINE_ONE="[Branch $TRAVIS_BRANCH](https://github.com/$TRAVIS_REPO_SLUG/tree/$TRAVIS_BRANCH)\n\n"
+fi
+
+LINE_TWO="$NOTIFICATION_STATUS $STAGE_NAME build [#$TRAVIS_BUILD_NUMBER]($TRAVIS_BUILD_WEB_URL) ([${COMMIT_SHA:0:7}](https://github.com/$TRAVIS_REPO_SLUG/commit/$COMMIT_SHA)) of $TRAVIS_REPO_SLUG@$TRAVIS_BRANCH by $AUTHOR_NAME"
+
+JSON='{
+    "@type": "MessageCard",
+    "@context": "https://schema.org/extensions",
+    "summary": "Travis CI",
+    "themeColor": "'$THEME_COLOR'",
+    "sections": [
+        {
+            "text": "'$LINE_ONE''$LINE_TWO'"
+        }
+    ]
+}'
+
+curl -H "Content-Type: application/json" -d "${JSON}" "${WEBHOOK_URL}"
