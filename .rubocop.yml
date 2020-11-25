@@ -1,13 +1,15 @@
+require: rubocop-rails
 Rails:
   Enabled: true
 AllCops:
+  NewCops: enable
   DisplayCopNames: true
   Exclude:
     - '**/db/schema.rb'
     - vendor/bundle/**/*
 
 Layout/IndentationConsistency:
-  EnforcedStyle: rails
+  EnforcedStyle: indented_internal_methods
 Layout/DotPosition:
   EnforcedStyle: trailing
 Layout/MultilineMethodCallIndentation:
@@ -33,6 +35,10 @@ Layout/EmptyLineAfterGuardClause:
   Enabled: false
 Layout/RescueEnsureAlignment:
   Enabled: false
+Layout/LineLength:
+  Max: 150
+  IgnoredPatterns:
+    - '^\W*\#'
 
 Style/ClassAndModuleChildren:
   Exclude:
@@ -67,10 +73,6 @@ Metrics/BlockLength:
 Metrics/MethodLength:
   Exclude:
     - '**/db/migrate/**/*'
-Metrics/LineLength:
-  Max: 150
-  IgnoredPatterns:
-    - '^\W*\#'
 Metrics/AbcSize:
   Exclude:
     - '**/db/migrate/**/*'
@@ -82,3 +84,7 @@ Rails/Blank:
   UnlessPresent: false
 Rails/HasAndBelongsToMany:
   Enabled: false
+Rails/RakeEnvironment:
+  Enabled: false
+Rails/FilePath:
+  EnforcedStyle: arguments
