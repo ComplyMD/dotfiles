@@ -6,8 +6,8 @@ AllCops:
   DisplayCopNames: true
   Exclude:
     - '**/db/schema.rb'
-    - vendor/bundle/**/*
-    - node_modules/**/*
+    - '**/vendor/bundle/**/*'
+    - '**/node_modules/**/*'
 
 Layout/IndentationConsistency:
   EnforcedStyle: indented_internal_methods
@@ -47,16 +47,16 @@ Style/ClassAndModuleChildren:
 Style/Documentation:
   Exclude:
     - '**/db/migrate/**/*'
-    - spec/**/*
+    - '**/spec/**/*'
 Style/DocumentationMethod:
   Enabled: true
   RequireForNonPublicMethods: true
   Exclude:
     - '**/db/migrate/**/*'
-    - 'bin/**/*'
-    - 'lib/engines/*/bin/**/*'
-    - 'spec/**/*'
-    - 'doc-src/**/*'
+    - '**/bin/**/*'
+    - '**/lib/engines/*/bin/**/*'
+    - '**/spec/**/*'
+    - '**/doc-src/**/*'
 Style/DoubleNegation:
   Enabled: false
 Style/TrailingCommaInArrayLiteral:
