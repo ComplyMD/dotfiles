@@ -28,6 +28,8 @@ Layout/EmptyLinesAroundBlockBody:
   Exclude:
     - '**/spec/**/*'
     - '**/db/migrate/**/*'
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
 Layout/SpaceInsidePercentLiteralDelimiters:
   Enabled: false
 Layout/SpaceInsideArrayLiteralBrackets:
