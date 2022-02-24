@@ -1,3 +1,5 @@
+require: rubocop-rails
+
 Rails:
   Enabled: true
 AllCops:
@@ -7,7 +9,7 @@ AllCops:
     - vendor/bundle/**/*
 
 Layout/IndentationConsistency:
-  EnforcedStyle: rails
+  EnforcedStyle: indented_internal_methods
 Layout/DotPosition:
   EnforcedStyle: trailing
 Layout/MultilineMethodCallIndentation:
