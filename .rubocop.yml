@@ -63,6 +63,8 @@ Style/DocumentationMethod:
     - '**/doc-src/**/*'
 Style/DoubleNegation:
   Enabled: false
+Style/OpenStructUse:
+  Enabled: false
 Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: comma
 Style/TrailingCommaInArrayLiteral:
